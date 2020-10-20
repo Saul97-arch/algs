@@ -1,0 +1,35 @@
+Pseudo for binary search: (Need the array to be sorted first)
+Repeat until the (sub)array is of size 0:
+  Calculate the middle point of the current (sub)array.
+  If the target is at middle, stop.
+  Otherwise, if the target is less than what's at the middle, repeat, changing the end 
+  point to be just to  the left of the middle.
+  Otherwise, if the target is greater than what's at the middle, repeat, changing the start
+  point to be just to the right of the middle.
+
+//Is a sorting algorithm
+Pseudo for bubble sort:
+  In bubble sort, the idea of the algorithm is to move higher valued elements generally towards the right
+  and lower value elements generally towards the left.
+
+  Set swap counter to a non-zero value.
+  Repeat until the swap counter is 0:
+    Reset swap counter to 0
+    Look at each adjacent pair
+        if two adjacent elements are not in order, swap them and add one to the swap counter
+
+//Another sorting algorithm
+Pseudo for selection sort
+    Repeat until no unsorted elements remain:
+        Search the unsorted part of the data to find the smallest value
+        Swap the smallest found value with the first element of the unsorted part
+
+Pseudo for Insertion Sort:
+In Insertion sort, the idea of the algorithm is to build your sorted array in place, shifting elements out the way
+if necessary to make room as you go.
+
+Call the first element of the array "sorted"
+Repeat until all elements are sorted:
+    Look at the next unsorted element. Insert into the "sorted" portion by shifting the requesite number of elements.
+
+    
