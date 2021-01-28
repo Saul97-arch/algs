@@ -208,3 +208,82 @@ function convertHTML(str) {
 //console.log(convertHTML('Stuff in "quotation marks"'));
 //console.log(convertHTML("Hamburgers < Pizza < Tacos"));
 // convertHTML("Dolce & Gabbana") should return "Dolce &amp; Gabbana".
+
+//Fibonacci, 1, 1, 2, 3, 5, 8 so on
+
+/* let prev = 0;
+let actual = 1;
+let next = 0; */
+/* console.log(prev)
+console.log(actual); */
+/* for (let i = 1; i <= 10; i++) {
+  next = actual + prev; // 2
+  prev = actual; // 1
+  actual = next;
+  console.log(actual);
+} */
+
+// Função pega do freecodeCamp
+function sumFibs(num) {
+  var prevNumber = 0;
+  var currNumber = 1;
+  var result = 0;
+  while (currNumber <= num) {
+    result += currNumber;
+
+    currNumber += prevNumber;
+    prevNumber = currNumber - prevNumber;
+  }
+
+  return result;
+}
+
+//Versão 2
+
+function sumFibs2(num) {
+  // Perform checks for the validity of the input
+  if (num <= 0) return 0;
+
+  // Create an array of fib numbers till num
+  const arrFib = [1, 1];
+  let nextFib = 0;
+
+  // We put the new Fibonacci numbers to the front so we
+  // don't need to calculate the length of the array on each
+  // iteration
+  while ((nextFib = arrFib[0] + arrFib[1]) <= num) {
+    arrFib.unshift(nextFib);
+  }
+
+  // We filter the array to get the odd numbers and reduce them to get their sum.
+  return arrFib.filter((x) => x % 2 != 0).reduce((a, b) => a + b);
+}
+
+// test here
+//sumFibs(4);
+
+// console.log(sumFibs(10));
+
+const isPrime = (n) => {
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+
+  return n > 1;
+}
+
+function sumPrimes(num) {
+  let res = 0;
+  for (let i = 0; i <= num; i++) {
+    if(isPrime(i)) {
+      console.log('Primo');
+      res += i;
+    }
+  }
+  
+  return res;
+}
+
+console.log(sumPrimes(10));
