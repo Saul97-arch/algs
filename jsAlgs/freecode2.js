@@ -168,3 +168,43 @@ function uniteUnique(...arr) {
 }
 
 // console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+
+function convertHTML(str) {
+  // iterate over the splited str
+  const splitedStr = str.split("");
+
+  for (let i = 0; i < splitedStr.length; i++) {
+    switch (splitedStr[i]) {
+      case "&":
+        splitedStr.splice(i, 1, "&amp;");
+        break;
+      case "<":
+        splitedStr.splice(i, 1, "&lt;");
+        break;
+      case ">":
+        splitedStr.splice(i, 1, "&gt;");
+        break;
+      case "<>":
+        splitedStr.splice(i, 1, "&lt;&gt;");
+        break;
+      case "'":
+        splitedStr.splice(i, 1, "&apos;");
+      case '"':
+        splitedStr.splice(i, 1, "&quot;");
+    }
+  }
+
+  for (let j = 0; j < splitedStr.join("").split("").length; j++) {
+    switch (splitedStr.join("").split("")[j]) {
+      case '"':
+        console.log("MATHC");
+        splitedStr.join("").split("").splice(j, 1, "&quot");
+    }
+  }
+
+  return splitedStr.join("");
+}
+
+//console.log(convertHTML('Stuff in "quotation marks"'));
+//console.log(convertHTML("Hamburgers < Pizza < Tacos"));
+// convertHTML("Dolce & Gabbana") should return "Dolce &amp; Gabbana".
