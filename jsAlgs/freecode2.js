@@ -341,10 +341,10 @@ function smallestCommons(arr) {
     .map((_, i) => i + min);
   // GCD of two numbers
   // https://en.wikipedia.org/wiki/Greatest_common_divisor#Euclid's_algorithm
-  const gcd = (a, b) => (b === 0) ? a : gcd(b, a % b);
+  const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
   // LCM of two numbers
   // https://en.wikipedia.org/wiki/Least_common_multiple#Using_the_greatest_common_divisor
-  const lcm = (a, b) => a * b / gcd(a, b);
+  const lcm = (a, b) => (a * b) / gcd(a, b);
   // LCM of multiple numbers
   // https://en.wikipedia.org/wiki/Least_common_multiple#Other
   return range.reduce((multiple, curr) => lcm(multiple, curr));
@@ -359,14 +359,14 @@ function smallestCommons(arr) {
     for (let j in primes) {
       // Add factor to set or update number of occurrences
       if (!primeFactors[j] || primes[j] > primeFactors[j]) {
-        primeFactors[j] = primes[j]
+        primeFactors[j] = primes[j];
       }
     }
   }
   // Build SCM from factorization
   let multiple = 1;
   for (let i in primeFactors) {
-    multiple *= i ** primeFactors[i]
+    multiple *= i ** primeFactors[i];
   }
   return multiple;
 }
@@ -377,12 +377,34 @@ function getPrimeFactors(num) {
   for (let prime = 2; prime <= num; prime++) {
     // Count occurances of factor
     // Note that composite values will not divide num
-    while ((num % prime) === 0) {
-      factors[prime] = (factors[prime]) ? factors[prime] + 1 : 1;
+    while (num % prime === 0) {
+      factors[prime] = factors[prime] ? factors[prime] + 1 : 1;
       num /= prime;
     }
   }
   return factors;
+}
+
+function smallestCommons(arr) {
+  function isValidMultiple(m, min, max) {
+    for (var i = min; i < max; i++) {
+      if (m % i !== 0) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  var max = Math.max(arr[0], arr[1]);
+  var min = Math.min(arr[0], arr[1]);
+  var multiple = max;
+
+  while (!isValidMultiple(multiple, min, max)) {
+    multiple += max;
+  }
+
+  return multiple;
 }
 
 console.log(smallestCommons([1, 5])); // should return 2520
